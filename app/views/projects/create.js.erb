@@ -1,0 +1,6 @@
+<% if @faild %>
+  $("#project_error").html("<%= escape_javascript render(:partial => 'shared/error_messages', :locals => {  :object =>  @project }) %>");
+<% else %>
+  window.location.reload();
+  $("#project_error").html("");
+<% end %>

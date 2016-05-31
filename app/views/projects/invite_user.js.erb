@@ -1,0 +1,4 @@
+$("#myModal1").modal('toggle');
+<% if flash[:notice] %>
+    $(".alert").html("<%= escape_javascript flash[:notice]%>");
+<% end %>

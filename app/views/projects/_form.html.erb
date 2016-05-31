@@ -1,0 +1,23 @@
+<div class="col-md-6 col-sm-8 col-xs-12 white_bg">
+  <%= form_for project, :remote => true do |f| %>
+    
+    <div id="project_error"></div>
+    
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, as: :wysihtml5,class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <%= f.label :submission_date %><br>
+      <%= f.text_field :submission_date, class: 'form-control datepicker' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: 'form-control'%>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Save', :class => 'btn btn-success' %>
+    </div>
+  <% end %>
+    
+</div>
