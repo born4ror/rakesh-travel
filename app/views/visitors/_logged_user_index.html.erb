@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-lg-12">
+    
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapse1">Click to see all projects(<%= @user_projects.count%>)</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <ul class="list-group">
+            <% unless @user_projects.blank? %>
+              <% @user_projects.each do |p|%>
+                <li class="list-group-item">
+                  <div style="color: <%= p.name_color %>; font-size: <%= p.name_font_size %>px;">Name: <%= p.name %></div><br>
+                  <div style="color: <%= p.date_color %>; font-size: <%= p.date_font_size %>px;">Submittion_date: <%= p.submission_date %></div><br>
+                  <div style="color: <%= p.description_color %>; font-size: <%= p.description_text_color %>px;">Description: <%= p.description %></div><br>
+                  <div class="clearfix"></div><br>
+                  <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal-<%= p.id%>">customize</button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal-<%= p.id%>" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">customize</h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= form_tag( project_update_style_path(p), remote: true) do  %>
+
+                            <%= label_tag :name_color %>
+                            <%= select_tag :name_color, options_for_select(Project::COLOR) %><br>
+
+                            <%= label_tag :name_font_size %>
+                            <%= select_tag :name_font_size, options_for_select(Project::FONT_SIZE) %><br>
+
+                            <%= label_tag :date_color %>
+                            <%= select_tag :date_color, options_for_select(Project::COLOR) %><br>
+
+                            <%= label_tag :date_font_size %>
+                            <%= select_tag :date_font_size, options_for_select(Project::FONT_SIZE) %><br>
+                            
+
+                            <%= label_tag :description_color %>
+                            <%= select_tag :description_color, options_for_select(Project::COLOR) %><br>
+
+                            <%= label_tag :description_text_color %>
+                            <%= select_tag :description_text_color, options_for_select(Project::FONT_SIZE) %><br>
+                            
+                            <%= submit_tag "save", class: "btn btn-primary" %>
+                          <% end %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            <% else %>
+              <p>No projects available.. ! </p>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#demo">
+    Add project
+    </button>
+    <div class="clearfix"></div><br>
+    <div id="demo" class="collapse">
+      <div class="">
+        <%= render partial: 'projects/form', locals: {project: @project} %>
+      </div>
+    </div>
+  </div>
+</div>

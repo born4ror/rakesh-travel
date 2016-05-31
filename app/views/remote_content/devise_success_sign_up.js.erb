@@ -1,0 +1,10 @@
+$('.modal').modal('hide')
+window.location.reload();
+if($('#flash').length > 0) {
+  $('#flash').remove();
+  $('.intro-header').prepend("<%= escape_javascript raw(flash_normal) %>");
+}
+else {
+  $('.modal').modal('hide')
+  $('.intro-header').prepend("<%= escape_javascript raw(flash_normal) %>");
+}

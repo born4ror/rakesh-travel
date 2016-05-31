@@ -1,0 +1,6 @@
+
+<% if user_signed_in? %>
+  <%= render 'visitors/logged_user_index' %>
+<% else %>
+  <%= render 'visitors/unlogged_user_index' %>
+<% end %>

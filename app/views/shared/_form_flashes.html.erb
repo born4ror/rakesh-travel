@@ -1,0 +1,8 @@
+<div id='form_flashes'>
+  <% flash.each do |type, message| %>
+    <div class='alert alert-danger'>
+      <button aria-hidden='true' class='close' data-dismiss='alert'>×</button>
+      <p><%= message %></p>
+    </div>
+  <% end %>
+</div>

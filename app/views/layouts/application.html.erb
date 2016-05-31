@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "OnePageApp" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Solute demo" %>">
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </header>
+    <% unless current_user %>
+      <div class="intro-header">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>  
+      </div>
+    <% else %>
+      <main role="main">
+        <div class="container">
+          <div class="row">
+            <%= render 'layouts/messages' %>
+            <div class="container-fluid" style="padding-top: 20px;">
+              <div class="row">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    <% end %>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="copyright small">Copyright &copy; Onepageapp 2016. All Rights Reserved</p>
+            <ul>
+              
+            <ul>
+          </div>
+        </div>
+      </div>
+  </footer>
+
+  </body>
+</html>
+<style type="text/css">
+  
+html,body{
+    height: 100%
+}
+.footer {
+  background-color: seagreen;
+  padding-bottom: inherit;
+  padding-top: 0;
+} 
+</style>
